@@ -1,5 +1,5 @@
-@import 'antd/dist/antd.css';
 @import 'antd/dist/antd.compact.css';
+/* @import 'antd/dist/antd.dark.css'; */
 
 /* #root {
   max-width: 1280px;
@@ -62,9 +62,9 @@
   background: #141414;
 } */
 
-.ant-table-container{ 
+/* .ant-table-container{ 
   overflow-x: auto;
-}
+} */
 /* .ant-table table {
   width:  unset;
 } */

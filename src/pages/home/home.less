@@ -1,0 +1,30 @@
+// @import 'antd/es/style/themes/default.less';
+
+/* .table-striped-rows tr:nth-child(2n) td {
+  background-color: #fbfbfb;
+}
+.table-striped-rows td {
+  background-color: #f1f1f1;
+} */
+
+.table-striped-rows tr:nth-child(2n) td {
+  background-color: @primary-1;
+}
+.table-striped-rows td {
+  background-color: @primary-2;
+}
+
+.rows-summary-homeaway {
+  position: sticky !important;
+  left: 0px;
+  z-index: 1;
+}
+.rows-summary-winner {
+  position: sticky !important;
+  left: 200px;
+  z-index: 1;
+  border-right: double red !important;
+}
+.highlight-row td {
+  background-color: @primary-color !important;
+}

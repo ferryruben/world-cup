@@ -28,7 +28,12 @@ export const SelectMultipleAll = ({
       options={[optionAll].concat(options)}
       optionFilterProp="label"
       mode="multiple"
-      maxTagCount="responsive"
+      maxTagCount={value.length === options.length ? 0 : 'responsive'}
+      maxTagPlaceholder={
+        value.length === options.length
+          ? `${defaultOptionAll.label} (${options.length})`
+          : undefined
+      }
       {...props}
     />
   )

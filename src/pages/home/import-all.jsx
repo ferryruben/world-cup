@@ -3,12 +3,7 @@ import { Button, message, Upload } from 'antd'
 import { ImportOutlined } from '@ant-design/icons'
 import { read, utils } from 'xlsx'
 
-// import single choice
 const ImportAll = ({ setColumns, setData }) => {
-  // const [jsonObj, setJsonObj] = React.useState()
-  // const [visibleJson, setVisibleJson] = React.useState(false)
-  // const [isPrettify, setIsPrettify] = React.useState(false)
-
   const props = {
     accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     maxCount: 1,

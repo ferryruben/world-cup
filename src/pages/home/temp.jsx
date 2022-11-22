@@ -1,28 +1,91 @@
+import React from 'react'
+import { Typography } from 'antd'
+
 export const defaultColumns = [
   {
     title: 'No.',
     render: (text, record, index) => index + 1,
-    width: 50,
+    width: 30,
   },
   {
     title: 'Date',
-    dataIndex: 'date',
+    // dataIndex: 'date',
+    render: ({ date, time }) => `${date} ${time}`,
     width: 100,
   },
-  {
-    title: 'Time',
-    dataIndex: 'time',
-    width: 100,
-  },
+  // {
+  //   title: 'Time',
+  //   dataIndex: 'time',
+  //   width: 100,
+  //   fixed: 'left',
+  // },
   {
     title: 'Home',
     dataIndex: 'home',
     width: 100,
+    render: (text, { winner }) => {
+      if (winner === 'Home')
+        return (
+          <Typography.Text type="success" underline>
+            {text}
+          </Typography.Text>
+        )
+      if (winner === 'Draw')
+        return (
+          <Typography.Text type="warning" underline>
+            {text}
+          </Typography.Text>
+        )
+      return text
+    },
+    onCell: () => ({
+      style: {
+        position: 'sticky',
+        left: 0,
+        zIndex: 1,
+      },
+    }),
+    onHeaderCell: () => ({
+      style: {
+        position: 'sticky',
+        left: 0,
+        zIndex: 1,
+      },
+    }),
   },
   {
     title: 'Away',
     dataIndex: 'away',
     width: 100,
+    render: (text, { winner }) => {
+      if (winner === 'Away')
+        return (
+          <Typography.Text type="success" underline>
+            {text}
+          </Typography.Text>
+        )
+      if (winner === 'Draw')
+        return (
+          <Typography.Text type="warning" underline>
+            {text}
+          </Typography.Text>
+        )
+      return text
+    },
+    onCell: () => ({
+      style: {
+        position: 'sticky',
+        left: 100,
+        zIndex: 1,
+      },
+    }),
+    onHeaderCell: () => ({
+      style: {
+        position: 'sticky',
+        left: 100,
+        zIndex: 1,
+      },
+    }),
   },
   // {
   //   title: 'Result',
