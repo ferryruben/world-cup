@@ -34,7 +34,7 @@ const App = () => {
 export default App
 
 const MainTable = ({ data, columns, filterColumns }) => {
-  const [sortByWinner, setSortByWinner] = React.useState(false)
+  const [sortByWinner, setSortByWinner] = React.useState(true)
   const [highlightRow, setHighlightRow] = React.useState()
 
   const renderedData = React.useMemo(
@@ -121,8 +121,8 @@ const MainTable = ({ data, columns, filterColumns }) => {
       }))
     if (sortByWinner) {
       filtered.sort((a, b) => {
-        if (a.title === 'Winner') return -1
-        if (b.title === 'Winner') return 1
+        if (a.dataIndex === 'winner') return -1
+        if (b.dataIndex === 'winner') return 1
 
         // const getTotal = (key) =>
         //   renderedData.reduce((acc, record) => {
@@ -134,8 +134,8 @@ const MainTable = ({ data, columns, filterColumns }) => {
     }
     if (highlightRow) {
       filtered.sort((a, b) => {
-        if (a.title === 'Winner') return -1
-        if (b.title === 'Winner') return 1
+        if (a.dataIndex === 'winner') return -1
+        if (b.dataIndex === 'winner') return 1
 
         return renderedData[highlightRow][b.dataIndex].localeCompare(
           renderedData[highlightRow][a.dataIndex],
