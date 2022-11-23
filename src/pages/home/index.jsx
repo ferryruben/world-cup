@@ -55,12 +55,29 @@ const MainTable = ({ data, columns, filterColumns }) => {
     [defaultData],
   )
 
+  const getTotal = React.useCallback(
+    (dataIndex) => {
+      const total = renderedData.reduce((acc, record) => {
+        if (record.winner === record[dataIndex]) return acc + 1
+        return acc
+      }, 0)
+      return total
+    },
+    [renderedData],
+  )
+
   const filteredColumns = React.useMemo(() => {
     const filtered = columns
       .filter((x) => filterColumns.includes(x.title))
       // .filter((x) => !x.title.includes('Winner'))
       .map((x) => ({
         ...x,
+        title: (
+          <>
+            {x.title}
+            <br />({getTotal(x.dataIndex)})
+          </>
+        ),
         width: 60,
         render: (text, { winner }) => {
           if (text === winner)
@@ -107,12 +124,12 @@ const MainTable = ({ data, columns, filterColumns }) => {
         if (a.title === 'Winner') return -1
         if (b.title === 'Winner') return 1
 
-        const getTotal = (key) =>
-          renderedData.reduce((acc, record) => {
-            if (record.winner === record[key.dataIndex]) return acc + 1
-            return acc
-          }, 0)
-        return getTotal(b) - getTotal(a)
+        // const getTotal = (key) =>
+        //   renderedData.reduce((acc, record) => {
+        //     if (record.winner === record[key.dataIndex]) return acc + 1
+        //     return acc
+        //   }, 0)
+        return getTotal(b.dataIndex) - getTotal(a.dataIndex)
       })
     }
     if (highlightRow) {
@@ -167,10 +184,7 @@ const MainTable = ({ data, columns, filterColumns }) => {
               {filteredColumns
                 .filter(({ dataIndex }) => dataIndex !== 'winner')
                 .map(({ dataIndex }) => {
-                  const total = renderedData.reduce((acc, record) => {
-                    if (record.winner === record[dataIndex]) return acc + 1
-                    return acc
-                  }, 0)
+                  const total = getTotal(dataIndex)
                   return <Table.Summary.Cell key={dataIndex}>{total}</Table.Summary.Cell>
                 })}
             </Table.Summary.Row>
